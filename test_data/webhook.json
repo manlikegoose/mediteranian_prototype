@@ -1,0 +1,37 @@
+[
+  {
+    "event": "inventory.updated",
+    "product_id": "PHONE-001",
+    "product_name": "samsung galaxy s23",
+    "quantity": 31,
+    "warehouse_id": "WH-001"
+  },
+  {
+    "event": "inventory.updated",
+    "product_id": "LAPTOP-001",
+    "product_name": "lenovo thinkpad x1 carbon",
+    "quantity": 12,
+    "warehouse_id": "WH-001"
+  },
+  {
+    "event": "inventory.updated",
+    "product_id": "HEADPHONES-001",
+    "product_name": "oraimo wireless earbuds",
+    "quantity": 35,
+    "warehouse_id": "WH-002"
+  },
+  {
+    "event": "inventory.updated",
+    "product_id": "KEYBOARD-001",
+    "product_name": "Mechanical Keyboard",
+    "quantity": 0,
+    "warehouse_id": "WH-002"
+  },
+  {
+    "event": "inventory.updated",
+    "product_id": "MOUSE-001",
+    "product_name": "Wireless Mouse",
+    "quantity": 14,
+    "warehouse_id": "WH-001"
+  }
+]

@@ -3,6 +3,7 @@ package main
 import (
 	"crypto/hmac"
 	"crypto/sha256"
+	"encoding/hex"
 	"fmt"
 	"io"
 	"log"
@@ -11,14 +12,12 @@ import (
 
 const webhookSecret = "zquak_secret_key_matatuyangu"
 
-
-func generateSignature(payload []byte) []byte {
+func generateSignature(payload []byte) string {
 	h := hmac.New(sha256.New, []byte(webhookSecret))
 	h.Write(payload)
 
-	return h.Sum(nil)
+	return hex.EncodeToString(h.Sum(nil))
 }
-
 
 func webhookHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
@@ -30,12 +29,19 @@ func webhookHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Could not read request body", http.StatusBadRequest)
 		return
 	}
-	fmt.Println("Received webhook:")
+	receivedSignature := r.Header.Get("X-Webhook-Signature")
+
+	expectedSignature := generateSignature(body)
+
+	if !hmac.Equal(
+		[]byte(receivedSignature),
+		[]byte(expectedSignature),
+	) {
+		http.Error(w, "Invalid signature", http.StatusUnauthorized)
+		return
+	}
+	fmt.Println("Received valid webhook:")
 	fmt.Println(string(body))
-
-
-	signature := generateSignature(body)
-	_ = signature
 
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("Webhook received successfully"))
