@@ -24,14 +24,14 @@
     "event": "inventory.updated",
     "product_id": "KEYBOARD-001",
     "product_name": "Mechanical Keyboard",
-    "quantity": 0,
+    "quantity": 11,
     "warehouse_id": "WH-002"
   },
   {
     "event": "inventory.updated",
     "product_id": "MOUSE-001",
     "product_name": "Wireless Mouse",
-    "quantity": 14,
+    "quantity": 13,
     "warehouse_id": "WH-001"
   }
 ]
